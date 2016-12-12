@@ -4,7 +4,8 @@ import Main.Global.*;
 
 typedef TODO = Dynamic;
 typedef ItemName = String;
-typedef Location = TODO;
+typedef Vector = TODO;
+typedef Location = Vector;
 
 @:native("_G")
 extern class Global {
@@ -45,12 +46,12 @@ extern class Global {
     static function GetCMPhaseTimeRemaining():Void;
     static function GetCMCaptain():Void;
     static function SetCMCaptain():Void;
-    static function IsCMBannedHero():Void;
-    static function IsCMPickedHero():Void;
-    static function CMBanHero():Void;
-    static function CMPickHero():Void;
-    static function RandomInt():Int;
-    static function RandomFloat():Float;
+    static function IsCMBannedHero(hero:HeroName):Bool;
+    static function IsCMPickedHero(hero:HeroName):Bool;
+    static function CMBanHero(hero:HeroName):Void;
+    static function CMPickHero(hero:HeroName):Void;
+    static function RandomInt(min:Int, max:Int):Int;
+    static function RandomFloat(min:Float, max:Float):Float;
     static function RandomYawVector():Void;
     static function RollPercentage():Void;
     static function Min(a:Float, b:Float):Float;
@@ -58,9 +59,9 @@ extern class Global {
     static function Clamp(value:Float, min:Float, max:Float):Float;
     static function RemapVal():Void;
     static function RemapValClamped():Void;
-    static function DebugDrawLine():Void;
-    static function DebugDrawCircle():Void;
-    static function DebugDrawText():Void;
+    static function DebugDrawLine(origin:Vector, target:Vector, r:Int, g:Int, b:Int, ztest:Bool, duration:Float):Void;
+    static function DebugDrawCircle(center:Vector, rgb:Vector, a:Float, rad:Float, ztest:Bool, duration:Float):Void;
+    static function DebugDrawText(origin:Vector, text:String, viewCheck:Bool, duration:Float):Void;
     static function GetUnitPotentialValue():Int;
 
     static var BOT_MODE_NONE(default,never):BotMode;
@@ -135,11 +136,6 @@ extern class Global {
     static var GAMEMODE_ARDM(default,never):GameMode;
     static var GAMEMODE_1V1MID(default,never):GameMode;
     static var GAMEMODE_ALL_DRAFT(default,never):GameMode;
-
-    static var LANE_NONE(default,never):Lane;
-    static var LANE_TOP(default,never):Lane;
-    static var LANE_MID(default,never):Lane;
-    static var LANE_BOT(default,never):Lane;
 
     static var GAME_STATE_INIT(default,never):GameState;
     static var GAME_STATE_WAIT_FOR_PLAYERS_TO_LOAD(default,never):GameState;
@@ -332,7 +328,14 @@ extern abstract ItemPurchaseResult(Int) {}
     var TEAM_NONE;
 }
 
-extern abstract Lane(Int) {}
+@:native("_G")
+@:enum extern abstract Lane(Int) {
+    var LANE_NONE;
+    var LANE_TOP;
+    var LANE_MID;
+    var LANE_BOT;
+}
+
 extern abstract GameState(Int) {}
 extern abstract HeroPickState(Int) {}
 extern abstract Rune(Int) {}
