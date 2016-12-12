@@ -40,9 +40,9 @@ extern class Global {
     static function GetHeroPickState():Int;
     static function IsPlayerInHeroSelectionControl():Void;
     static function SelectHero(player:Int, hero:HeroName):Void;
-    static function GetSelectedHeroName():Void;
-    static function IsInCMBanPhase():Void;
-    static function IsInCMPickPhase():Void;
+    static function GetSelectedHeroName():HeroName;
+    static function IsInCMBanPhase():Bool;
+    static function IsInCMPickPhase():Bool;
     static function GetCMPhaseTimeRemaining():Void;
     static function GetCMCaptain():Void;
     static function SetCMCaptain():Void;
