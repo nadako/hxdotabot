@@ -1,13 +1,15 @@
+import lua.Table;
+
 import Main.Global.*;
 
 @:native("_G")
 extern class Global {
     static function GetBot():Unit;
-    static function GetTeam():Void;
+    static function GetTeam():Team;
     static function GetTeamMember():Void;
-    static function DotaTime():Void;
-    static function GameTime():Void;
-    static function RealTime():Void;
+    static function DotaTime():Float;
+    static function GameTime():Float;
+    static function RealTime():Float;
     static function GetUnitToUnitDistance():Void;
     static function GetUnitToLocationDistance():Void;
     static function GetWorldBounds():Void;
@@ -246,12 +248,12 @@ extern class Unit {
     function IsFort():Bool;
     function IsIllusion():Bool;
     function CanBeSeen():Bool;
-    function GetActiveMode():Void;
-    function GetActiveModeDesire():Void;
-    function GetHealth():Void;
-    function GetMaxHealth():Void;
-    function GetMana():Void;
-    function GetMaxMana():Void;
+    function GetActiveMode():BotMode;
+    function GetActiveModeDesire():Float;
+    function GetHealth():Int;
+    function GetMaxHealth():Int;
+    function GetMana():Int;
+    function GetMaxMana():Int;
     function IsAlive():Bool;
     function GetRespawnTime():Void;
     function HasBuyback():Void;
@@ -294,11 +296,11 @@ extern class Unit {
     function DistanceFromSideShop():Void;
     function DistanceFromSecretShop():Void;
     function SetTarget():Void;
-    function GetTarget():Void;
+    function GetTarget():Unit;
     function SetNextItemPurchaseValue():Void;
     function GetNextItemPurchaseValue():Void;
     function GetAssignedLane():Void;
-    function GetEstimatedDamageToTarget():Void;
+    function GetEstimatedDamageToTarget():Float;
     function GetStunDuration():Void;
     function GetSlowDuration():Void;
     function HasBlink():Void;
@@ -306,9 +308,9 @@ extern class Unit {
     function HasSilence():Void;
     function HasInvisibility():Void;
     function UsingItemBreaksInvisibility():Void;
-    function GetNearbyHeroes():Void;
-    function GetNearbyTowers():Void;
-    function GetNearbyCreeps():Void;
+    function GetNearbyHeroes():Table<Int,Unit>;
+    function GetNearbyTowers():Table<Int,Unit>;
+    function GetNearbyCreeps():Table<Int,Unit>;
     function FindAoELocation():Void;
     function GetExtrapolatedLocation():Void;
     function GetMovementDirectionStability():Void;
