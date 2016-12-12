@@ -2,24 +2,30 @@ import lua.Table;
 
 import Main.Global.*;
 
+typedef TODO = Dynamic;
+typedef ItemName = String;
+typedef Location = TODO;
+
 @:native("_G")
 extern class Global {
     static function GetBot():Unit;
     static function GetTeam():Team;
-    static function GetTeamMember():Void;
+    static function GetTeamMember(team:Team, number:Int):TODO;
     static function DotaTime():Float;
     static function GameTime():Float;
     static function RealTime():Float;
-    static function GetUnitToUnitDistance():Void;
+    static function GetUnitToUnitDistance():Float;
     static function GetUnitToLocationDistance():Void;
     static function GetWorldBounds():Void;
-    static function IsLocationPassable():Void;
-    static function GetHeightLevel():Void;
+    static function IsLocationPassable():Bool;
+    static function GetHeightLevel():Int;
     static function GetLocationAlongLane():Void;
     static function GetNeutralSpawners():Void;
-    static function GetItemCost():Void;
-    static function IsItemPurchasedFromSecretShop():Void;
-    static function IsItemPurchasedFromSideShop():Void;
+
+    static function GetItemCost(item:ItemName):Int;
+    static function IsItemPurchasedFromSecretShop(item:ItemName):Bool;
+    static function IsItemPurchasedFromSideShop(item:ItemName):Bool;
+
     static function GetItemStockCount():Void;
     static function GetPushLaneDesire():Void;
     static function GetDefendLaneDesire():Void;
@@ -32,7 +38,7 @@ extern class Global {
     static function GetGameMode():Int;
     static function GetHeroPickState():Int;
     static function IsPlayerInHeroSelectionControl():Void;
-    static function SelectHero():Void;
+    static function SelectHero(player:Int, hero:HeroName):Void;
     static function GetSelectedHeroName():Void;
     static function IsInCMBanPhase():Void;
     static function IsInCMPickPhase():Void;
@@ -43,13 +49,13 @@ extern class Global {
     static function IsCMPickedHero():Void;
     static function CMBanHero():Void;
     static function CMPickHero():Void;
-    static function RandomInt():Void;
-    static function RandomFloat():Void;
+    static function RandomInt():Int;
+    static function RandomFloat():Float;
     static function RandomYawVector():Void;
     static function RollPercentage():Void;
-    static function Min():Void;
-    static function Max():Void;
-    static function Clamp():Void;
+    static function Min(a:Float, b:Float):Float;
+    static function Max(a:Float, b:Float):Float;
+    static function Clamp(value:Float, min:Float, max:Float):Float;
     static function RemapVal():Void;
     static function RemapValClamped():Void;
     static function DebugDrawLine():Void;
@@ -129,11 +135,6 @@ extern class Global {
     static var GAMEMODE_ARDM(default,never):GameMode;
     static var GAMEMODE_1V1MID(default,never):GameMode;
     static var GAMEMODE_ALL_DRAFT(default,never):GameMode;
-
-    static var TEAM_RADIANT(default,never):Team;
-    static var TEAM_DIRE(default,never):Team;
-    static var TEAM_NEUTRAL(default,never):Team;
-    static var TEAM_NONE(default,never):Team;
 
     static var LANE_NONE(default,never):Lane;
     static var LANE_TOP(default,never):Lane;
@@ -228,13 +229,13 @@ extern class Unit {
     function Action_AttackUnit():Void;
     function Action_AttackMove():Void;
     function Action_UseAbility(ability:Ability):Void;
-    function Action_UseAbilityOnEntity(ability:Ability):Void;
-    function Action_UseAbilityOnLocation(ability:Ability):Void;
-    function Action_UseAbilityOnTree(ability:Ability):Void;
+    function Action_UseAbilityOnEntity(ability:Ability, entity:Unit):Void;
+    function Action_UseAbilityOnLocation(ability:Ability, location:Location):Void;
+    function Action_UseAbilityOnTree(ability:Ability, tree:Unit):Void;
     function Action_PickUpRune():Void;
     function Action_PickUpItem():Void;
     function Action_DropItem():Void;
-    function Action_PurchaseItem():Void;
+    function Action_PurchaseItem(item:ItemName):Void;
     function Action_SellItem():Void;
     function Action_Buyback():Void;
     function Action_LevelAbility():Void;
@@ -257,18 +258,18 @@ extern class Unit {
     function IsAlive():Bool;
     function GetRespawnTime():Void;
     function HasBuyback():Void;
-    function GetGold():Void;
+    function GetGold():Int;
     function GetStashValue():Void;
     function GetCourierValue():Void;
-    function GetLocation():Void;
+    function GetLocation():Location;
     function GetFacing():Void;
     function GetGroundHeight():Void;
     function GetAbilityByName(name:String):Ability;
     function GetItemInSlot():Void;
-    function IsChanneling():Void;
+    function IsChanneling():Bool;
     function IsUsingAbility():Bool;
     function GetVelocity():Void;
-    function GetAttackTarget():Void;
+    function GetAttackTarget():Unit;
     function GetLastSeenLocation():Void;
     function GetTimeSinceLastSeen():Void;
     function IsRooted():Bool;
@@ -288,17 +289,17 @@ extern class Unit {
     function IsDominated():Bool;
     function IsBlind():Bool;
     function HasScepter():Bool;
-    function WasRecentlyDamagedByAnyHero():Void;
-    function WasRecentlyDamagedByHero():Void;
+    function WasRecentlyDamagedByAnyHero():Bool;
+    function WasRecentlyDamagedByHero():Bool;
     function TimeSinceDamagedByAnyHero():Void;
     function TimeSinceDamagedByHero():Void;
     function DistanceFromFountain():Void;
     function DistanceFromSideShop():Void;
     function DistanceFromSecretShop():Void;
-    function SetTarget():Void;
-    function GetTarget():Unit;
-    function SetNextItemPurchaseValue():Void;
-    function GetNextItemPurchaseValue():Void;
+    function SetTarget(target:Unit):Void;
+    function GetTarget():Null<Unit>;
+    function SetNextItemPurchaseValue(value:Int):Void;
+    function GetNextItemPurchaseValue():Int;
     function GetAssignedLane():Void;
     function GetEstimatedDamageToTarget():Float;
     function GetStunDuration():Void;
@@ -322,15 +323,147 @@ extern abstract BotMode(Int) {}
 extern abstract DamageType(Int) {}
 extern abstract Difficulty(Int) {}
 extern abstract ItemPurchaseResult(Int) {}
-extern abstract Team(Int) {}
+
+@:native("_G")
+@:enum extern abstract Team(Int) {
+    var TEAM_RADIANT;
+    var TEAM_DIRE;
+    var TEAM_NEUTRAL;
+    var TEAM_NONE;
+}
+
 extern abstract Lane(Int) {}
 extern abstract GameState(Int) {}
 extern abstract HeroPickState(Int) {}
 extern abstract Rune(Int) {}
 extern abstract RuneStatus(Int) {}
-extern abstract Ability({}) {}
+
+extern class Ability {
+    function IsFullyCastable():Bool;
+    function GetCastRange():Int;
+    function GetAbilityDamage():Int;
+}
+
+@:enum abstract HeroName(String) {
+    var Abaddon = "npc_dota_hero_abaddon";
+    var Alchemist = "npc_dota_hero_alchemist";
+    var AncientApparition = "npc_dota_hero_ancient_apparition";
+    var Antimage = "npc_dota_hero_antimage";
+    var Axe = "npc_dota_hero_axe";
+    var Bane = "npc_dota_hero_bane";
+    var Batrider = "npc_dota_hero_batrider";
+    var Beastmaster = "npc_dota_hero_beastmaster";
+    var Bloodseeker = "npc_dota_hero_bloodseeker";
+    var BountyHunter = "npc_dota_hero_bounty_hunter";
+    var Brewmaster = "npc_dota_hero_brewmaster";
+    var Bristleback = "npc_dota_hero_bristleback";
+    var Broodmother = "npc_dota_hero_broodmother";
+    var Centaur = "npc_dota_hero_centaur";
+    var ChaosKnight = "npc_dota_hero_chaos_knight";
+    var Chen = "npc_dota_hero_chen";
+    var Clinkz = "npc_dota_hero_clinkz";
+    var CrystalMaiden = "npc_dota_hero_crystal_maiden";
+    var DarkSeer = "npc_dota_hero_dark_seer";
+    var Dazzle = "npc_dota_hero_dazzle";
+    var DeathProphet = "npc_dota_hero_death_prophet";
+    var Disruptor = "npc_dota_hero_disruptor";
+    var DoomBringer = "npc_dota_hero_doom_bringer";
+    var DragonKnight = "npc_dota_hero_dragon_knight";
+    var DrowRanger = "npc_dota_hero_drow_ranger";
+    var EarthSpirit = "npc_dota_hero_earth_spirit";
+    var Earthshaker = "npc_dota_hero_earthshaker";
+    var ElderTitan = "npc_dota_hero_elder_titan";
+    var EmberSpirit = "npc_dota_hero_ember_spirit";
+    var Enchantress = "npc_dota_hero_enchantress";
+    var Enigma = "npc_dota_hero_enigma";
+    var FacelessVoid = "npc_dota_hero_faceless_void";
+    var Furion = "npc_dota_hero_furion";
+    var Gyrocopter = "npc_dota_hero_gyrocopter";
+    var Huskar = "npc_dota_hero_huskar";
+    var Invoker = "npc_dota_hero_invoker";
+    var Jakiro = "npc_dota_hero_jakiro";
+    var Juggernaut = "npc_dota_hero_juggernaut";
+    var KeeperOfTheLight = "npc_dota_hero_keeper_of_the_light";
+    var Kunkka = "npc_dota_hero_kunkka";
+    var LegionCommander = "npc_dota_hero_legion_commander";
+    var Leshrac = "npc_dota_hero_leshrac";
+    var Lich = "npc_dota_hero_lich";
+    var LifeStealer = "npc_dota_hero_life_stealer";
+    var Lina = "npc_dota_hero_lina";
+    var Lion = "npc_dota_hero_lion";
+    var LoneDruid = "npc_dota_hero_lone_druid";
+    var Luna = "npc_dota_hero_luna";
+    var Lycan = "npc_dota_hero_lycan";
+    var Magnataur = "npc_dota_hero_magnataur";
+    var Medusa = "npc_dota_hero_medusa";
+    var Meepo = "npc_dota_hero_meepo";
+    var Mirana = "npc_dota_hero_mirana";
+    var Morphling = "npc_dota_hero_morphling";
+    var NagaSiren = "npc_dota_hero_naga_siren";
+    var Necrolyte = "npc_dota_hero_necrolyte";
+    var Nevermore = "npc_dota_hero_nevermore";
+    var NightStalker = "npc_dota_hero_night_stalker";
+    var NyxAssassin = "npc_dota_hero_nyx_assassin";
+    var ObsidianDestroyer = "npc_dota_hero_obsidian_destroyer";
+    var OgreMagi = "npc_dota_hero_ogre_magi";
+    var Omniknight = "npc_dota_hero_omniknight";
+    var PhantomAssassin = "npc_dota_hero_phantom_assassin";
+    var PhantomLancer = "npc_dota_hero_phantom_lancer";
+    var Phoenix = "npc_dota_hero_phoenix";
+    var Puck = "npc_dota_hero_puck";
+    var Pudge = "npc_dota_hero_pudge";
+    var Pugna = "npc_dota_hero_pugna";
+    var Queenofpain = "npc_dota_hero_queenofpain";
+    var Rattletrap = "npc_dota_hero_rattletrap";
+    var Razor = "npc_dota_hero_razor";
+    var Riki = "npc_dota_hero_riki";
+    var Rubick = "npc_dota_hero_rubick";
+    var SandKing = "npc_dota_hero_sand_king";
+    var ShadowDemon = "npc_dota_hero_shadow_demon";
+    var ShadowShaman = "npc_dota_hero_shadow_shaman";
+    var Shredder = "npc_dota_hero_shredder";
+    var Silencer = "npc_dota_hero_silencer";
+    var SkeletonKing = "npc_dota_hero_skeleton_king";
+    var SkywrathMage = "npc_dota_hero_skywrath_mage";
+    var Slardar = "npc_dota_hero_slardar";
+    var Slark = "npc_dota_hero_slark";
+    var Sniper = "npc_dota_hero_sniper";
+    var Spectre = "npc_dota_hero_spectre";
+    var SpiritBreaker = "npc_dota_hero_spirit_breaker";
+    var StormSpirit = "npc_dota_hero_storm_spirit";
+    var Sven = "npc_dota_hero_sven";
+    var TemplarAssassin = "npc_dota_hero_templar_assassin";
+    var Terrorblade = "npc_dota_hero_terrorblade";
+    var Tidehunter = "npc_dota_hero_tidehunter";
+    var Tinker = "npc_dota_hero_tinker";
+    var Tiny = "npc_dota_hero_tiny";
+    var Treant = "npc_dota_hero_treant";
+    var TrollWarlord = "npc_dota_hero_troll_warlord";
+    var Tusk = "npc_dota_hero_tusk";
+    var Undying = "npc_dota_hero_undying";
+    var Ursa = "npc_dota_hero_ursa";
+    var Vengefulspirit = "npc_dota_hero_vengefulspirit";
+    var Venomancer = "npc_dota_hero_venomancer";
+    var Viper = "npc_dota_hero_viper";
+    var Visage = "npc_dota_hero_visage";
+    var Warlock = "npc_dota_hero_warlock";
+    var Weaver = "npc_dota_hero_weaver";
+    var Windrunner = "npc_dota_hero_windrunner";
+    var Wisp = "npc_dota_hero_wisp";
+    var WitchDoctor = "npc_dota_hero_witch_doctor";
+    var Zuus = "npc_dota_hero_zuus";
+}
 
 class Main {
     static function main() {
+        var team = GetTeam();
+        if (team == TEAM_RADIANT || team == TEAM_DIRE) {
+            SelectHero(0, Invoker);
+            SelectHero(1, Invoker);
+            SelectHero(2, Invoker);
+            SelectHero(3, Invoker);
+            SelectHero(4, Invoker);
+            SelectHero(5, Invoker);
+        }
     }
 }
