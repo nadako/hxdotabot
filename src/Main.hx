@@ -2,7 +2,7 @@ import Main.Global.*;
 
 @:native("_G")
 extern class Global {
-    static function GetBot():Void;
+    static function GetBot():Unit;
     static function GetTeam():Void;
     static function GetTeamMember():Void;
     static function DotaTime():Void;
@@ -54,100 +54,6 @@ extern class Global {
     static function DebugDrawCircle():Void;
     static function DebugDrawText():Void;
     static function GetUnitPotentialValue():Int;
-
-    static function Action_ClearActions():Void;
-    static function Action_MoveToLocation():Void;
-    static function Action_MoveToUnit():Void;
-    static function Action_AttackUnit():Void;
-    static function Action_AttackMove():Void;
-    static function Action_UseAbility():Void;
-    static function Action_UseAbilityOnEntity():Void;
-    static function Action_UseAbilityOnLocation():Void;
-    static function Action_UseAbilityOnTree():Void;
-    static function Action_PickUpRune():Void;
-    static function Action_PickUpItem():Void;
-    static function Action_DropItem():Void;
-    static function Action_PurchaseItem():Void;
-    static function Action_SellItem():Void;
-    static function Action_Buyback():Void;
-    static function Action_LevelAbility():Void;
-    static function GetDifficulty():Void;
-    static function GetUnitName():Void;
-    static function GetPlayer():Void;
-    static function IsHero():Void;
-    static function IsCreep():Void;
-    static function IsTower():Void;
-    static function IsBuilding():Void;
-    static function IsFort():Void;
-    static function IsIllusion():Void;
-    static function CanBeSeen():Void;
-    static function GetActiveMode():Void;
-    static function GetActiveModeDesire():Void;
-    static function GetHealth():Void;
-    static function GetMaxHealth():Void;
-    static function GetMana():Void;
-    static function GetMaxMana():Void;
-    static function IsAlive():Void;
-    static function GetRespawnTime():Void;
-    static function HasBuyback():Void;
-    static function GetGold():Void;
-    static function GetStashValue():Void;
-    static function GetCourierValue():Void;
-    static function GetLocation():Void;
-    static function GetFacing():Void;
-    static function GetGroundHeight():Void;
-    static function GetAbilityByName():Void;
-    static function GetItemInSlot():Void;
-    static function IsChanneling():Void;
-    static function IsUsingAbility():Void;
-    static function GetVelocity():Void;
-    static function GetAttackTarget():Void;
-    static function GetLastSeenLocation():Void;
-    static function GetTimeSinceLastSeen():Void;
-    static function IsRooted():Void;
-    static function IsDisarmed():Void;
-    static function IsAttackImmune():Void;
-    static function IsSilenced():Void;
-    static function IsMuted():Void;
-    static function IsStunned():Void;
-    static function IsHexed():Void;
-    static function IsInvulnerable():Void;
-    static function IsMagicImmune():Void;
-    static function IsNightmared():Void;
-    static function IsBlockDisabled():Void;
-    static function IsEvadeDisabled():Void;
-    static function IsUnableToMiss():Void;
-    static function IsSpeciallyDeniable():Void;
-    static function IsDominated():Void;
-    static function IsBlind():Void;
-    static function HasScepter():Void;
-    static function WasRecentlyDamagedByAnyHero():Void;
-    static function WasRecentlyDamagedByHero():Void;
-    static function TimeSinceDamagedByAnyHero():Void;
-    static function TimeSinceDamagedByHero():Void;
-    static function DistanceFromFountain():Void;
-    static function DistanceFromSideShop():Void;
-    static function DistanceFromSecretShop():Void;
-    static function SetTarget():Void;
-    static function GetTarget():Void;
-    static function SetNextItemPurchaseValue():Void;
-    static function GetNextItemPurchaseValue():Void;
-    static function GetAssignedLane():Void;
-    static function GetEstimatedDamageToTarget():Void;
-    static function GetStunDuration():Void;
-    static function GetSlowDuration():Void;
-    static function HasBlink():Void;
-    static function HasMinistunOnAttack():Void;
-    static function HasSilence():Void;
-    static function HasInvisibility():Void;
-    static function UsingItemBreaksInvisibility():Void;
-    static function GetNearbyHeroes():Void;
-    static function GetNearbyTowers():Void;
-    static function GetNearbyCreeps():Void;
-    static function FindAoELocation():Void;
-    static function GetExtrapolatedLocation():Void;
-    static function GetMovementDirectionStability():Void;
-    static function GetActualDamage():Void;
 
     static var BOT_MODE_NONE(default,never):BotMode;
     static var BOT_MODE_LANING(default,never):BotMode;
@@ -313,6 +219,102 @@ extern class Global {
     static var RUNE_STATUS_MISSING(default,never):RuneStatus;
 }
 
+extern class Unit {
+    function Action_ClearActions():Void;
+    function Action_MoveToLocation():Void;
+    function Action_MoveToUnit():Void;
+    function Action_AttackUnit():Void;
+    function Action_AttackMove():Void;
+    function Action_UseAbility(ability:Ability):Void;
+    function Action_UseAbilityOnEntity(ability:Ability):Void;
+    function Action_UseAbilityOnLocation(ability:Ability):Void;
+    function Action_UseAbilityOnTree(ability:Ability):Void;
+    function Action_PickUpRune():Void;
+    function Action_PickUpItem():Void;
+    function Action_DropItem():Void;
+    function Action_PurchaseItem():Void;
+    function Action_SellItem():Void;
+    function Action_Buyback():Void;
+    function Action_LevelAbility():Void;
+    function GetDifficulty():Void;
+    function GetUnitName():String;
+    function GetPlayer():Void;
+    function IsHero():Bool;
+    function IsCreep():Bool;
+    function IsTower():Bool;
+    function IsBuilding():Bool;
+    function IsFort():Bool;
+    function IsIllusion():Bool;
+    function CanBeSeen():Bool;
+    function GetActiveMode():Void;
+    function GetActiveModeDesire():Void;
+    function GetHealth():Void;
+    function GetMaxHealth():Void;
+    function GetMana():Void;
+    function GetMaxMana():Void;
+    function IsAlive():Bool;
+    function GetRespawnTime():Void;
+    function HasBuyback():Void;
+    function GetGold():Void;
+    function GetStashValue():Void;
+    function GetCourierValue():Void;
+    function GetLocation():Void;
+    function GetFacing():Void;
+    function GetGroundHeight():Void;
+    function GetAbilityByName(name:String):Ability;
+    function GetItemInSlot():Void;
+    function IsChanneling():Void;
+    function IsUsingAbility():Bool;
+    function GetVelocity():Void;
+    function GetAttackTarget():Void;
+    function GetLastSeenLocation():Void;
+    function GetTimeSinceLastSeen():Void;
+    function IsRooted():Bool;
+    function IsDisarmed():Bool;
+    function IsAttackImmune():Bool;
+    function IsSilenced():Bool;
+    function IsMuted():Bool;
+    function IsStunned():Bool;
+    function IsHexed():Bool;
+    function IsInvulnerable():Bool;
+    function IsMagicImmune():Bool;
+    function IsNightmared():Bool;
+    function IsBlockDisabled():Bool;
+    function IsEvadeDisabled():Bool;
+    function IsUnableToMiss():Bool;
+    function IsSpeciallyDeniable():Bool;
+    function IsDominated():Bool;
+    function IsBlind():Bool;
+    function HasScepter():Bool;
+    function WasRecentlyDamagedByAnyHero():Void;
+    function WasRecentlyDamagedByHero():Void;
+    function TimeSinceDamagedByAnyHero():Void;
+    function TimeSinceDamagedByHero():Void;
+    function DistanceFromFountain():Void;
+    function DistanceFromSideShop():Void;
+    function DistanceFromSecretShop():Void;
+    function SetTarget():Void;
+    function GetTarget():Void;
+    function SetNextItemPurchaseValue():Void;
+    function GetNextItemPurchaseValue():Void;
+    function GetAssignedLane():Void;
+    function GetEstimatedDamageToTarget():Void;
+    function GetStunDuration():Void;
+    function GetSlowDuration():Void;
+    function HasBlink():Void;
+    function HasMinistunOnAttack():Void;
+    function HasSilence():Void;
+    function HasInvisibility():Void;
+    function UsingItemBreaksInvisibility():Void;
+    function GetNearbyHeroes():Void;
+    function GetNearbyTowers():Void;
+    function GetNearbyCreeps():Void;
+    function FindAoELocation():Void;
+    function GetExtrapolatedLocation():Void;
+    function GetMovementDirectionStability():Void;
+    function GetActualDamage():Void;
+}
+
 extern abstract GameMode(Int) {}
 extern abstract BotMode(Int) {}
 extern abstract DamageType(Int) {}
@@ -324,6 +326,7 @@ extern abstract GameState(Int) {}
 extern abstract HeroPickState(Int) {}
 extern abstract Rune(Int) {}
 extern abstract RuneStatus(Int) {}
+extern abstract Ability({}) {}
 
 class Main {
     static function main() {
