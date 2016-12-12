@@ -64,28 +64,6 @@ extern class Global {
     static function DebugDrawText(origin:Vector, text:String, viewCheck:Bool, duration:Float):Void;
     static function GetUnitPotentialValue():Int;
 
-    static var BOT_MODE_NONE(default,never):BotMode;
-    static var BOT_MODE_LANING(default,never):BotMode;
-    static var BOT_MODE_ATTACK(default,never):BotMode;
-    static var BOT_MODE_ROAM(default,never):BotMode;
-    static var BOT_MODE_RETREAT(default,never):BotMode;
-    static var BOT_MODE_SECRET_SHOP(default,never):BotMode;
-    static var BOT_MODE_SIDE_SHOP(default,never):BotMode;
-    static var BOT_MODE_PUSH_TOWER_TOP(default,never):BotMode;
-    static var BOT_MODE_PUSH_TOWER_MID(default,never):BotMode;
-    static var BOT_MODE_PUSH_TOWER_BOT(default,never):BotMode;
-    static var BOT_MODE_DEFEND_TOWER_TOP(default,never):BotMode;
-    static var BOT_MODE_DEFEND_TOWER_MID(default,never):BotMode;
-    static var BOT_MODE_DEFEND_TOWER_BOT(default,never):BotMode;
-    static var BOT_MODE_ASSEMBLE(default,never):BotMode;
-    static var BOT_MODE_TEAM_ROAM(default,never):BotMode;
-    static var BOT_MODE_FARM(default,never):BotMode;
-    static var BOT_MODE_DEFEND_ALLY(default,never):BotMode;
-    static var BOT_MODE_EVASIVE_MANEUVERS(default,never):BotMode;
-    static var BOT_MODE_ROSHAN(default,never):BotMode;
-    static var BOT_MODE_ITEM(default,never):BotMode;
-    static var BOT_MODE_WARD(default,never):BotMode;
-
     static var BOT_ACTION_DESIRE_NONE(default,never):Float;
     static var BOT_ACTION_DESIRE_VERYLOW(default,never):Float;
     static var BOT_ACTION_DESIRE_LOW(default,never):Float;
@@ -101,121 +79,6 @@ extern class Global {
     static var BOT_MODE_DESIRE_HIGH(default,never):Float;
     static var BOT_MODE_DESIRE_VERYHIGH(default,never):Float;
     static var BOT_MODE_DESIRE_ABSOLUTE(default,never):Float;
-
-    static var DAMAGE_TYPE_PHYSICAL(default,never):DamageType;
-    static var DAMAGE_TYPE_MAGICAL(default,never):DamageType;
-    static var DAMAGE_TYPE_PURE(default,never):DamageType;
-    static var DAMAGE_TYPE_ALL(default,never):DamageType;
-
-    static var DIFFICULTY_INVALID(default,never):Difficulty;
-    static var DIFFICULTY_PASSIVE(default,never):Difficulty;
-    static var DIFFICULTY_EASY(default,never):Difficulty;
-    static var DIFFICULTY_MEDIUM(default,never):Difficulty;
-    static var DIFFICULTY_HARD(default,never):Difficulty;
-    static var DIFFICULTY_UNFAIR(default,never):Difficulty;
-
-    static var PURCHASE_ITEM_SUCCESS(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_OUT_OF_STOCK(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_DISALLOWED_ITEM(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_INSUFFICIENT_GOLD(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_NOT_AT_HOME_SHOP(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_NOT_AT_SIDE_SHOP(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_NOT_AT_SECRET_SHOP(default,never):ItemPurchaseResult;
-    static var PURCHASE_ITEM_INVALID_ITEM_NAME(default,never):ItemPurchaseResult;
-
-    static var GAMEMODE_NONE(default,never):GameMode;
-    static var GAMEMODE_AP(default,never):GameMode;
-    static var GAMEMODE_CM(default,never):GameMode;
-    static var GAMEMODE_RD(default,never):GameMode;
-    static var GAMEMODE_SD(default,never):GameMode;
-    static var GAMEMODE_AR(default,never):GameMode;
-    static var GAMEMODE_REVERSE_CM(default,never):GameMode;
-    static var GAMEMODE_MO(default,never):GameMode;
-    static var GAMEMODE_CD(default,never):GameMode;
-    static var GAMEMODE_ABILITY_DRAFT(default,never):GameMode;
-    static var GAMEMODE_ARDM(default,never):GameMode;
-    static var GAMEMODE_1V1MID(default,never):GameMode;
-    static var GAMEMODE_ALL_DRAFT(default,never):GameMode;
-
-    static var GAME_STATE_INIT(default,never):GameState;
-    static var GAME_STATE_WAIT_FOR_PLAYERS_TO_LOAD(default,never):GameState;
-    static var GAME_STATE_HERO_SELECTION(default,never):GameState;
-    static var GAME_STATE_STRATEGY_TIME(default,never):GameState;
-    static var GAME_STATE_PRE_GAME(default,never):GameState;
-    static var GAME_STATE_GAME_IN_PROGRESS(default,never):GameState;
-    static var GAME_STATE_POST_GAME(default,never):GameState;
-    static var GAME_STATE_DISCONNECT(default,never):GameState;
-    static var GAME_STATE_TEAM_SHOWCASE(default,never):GameState;
-    static var GAME_STATE_CUSTOM_GAME_SETUP(default,never):GameState;
-    static var GAME_STATE_WAIT_FOR_MAP_TO_LOAD(default,never):GameState;
-    static var GAME_STATE_LAST(default,never):GameState;
-
-    static var HEROPICK_STATE_NONE(default,never):HeroPickState;
-    static var HEROPICK_STATE_AP_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_SD_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_INTRO(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_CAPTAINPICK(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN1(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN2(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN3(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN4(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN5(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN6(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN7(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN8(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN9(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_BAN10(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT1(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT2(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT3(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT4(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT5(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT6(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT7(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT8(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT9(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_SELECT10(default,never):HeroPickState;
-    static var HEROPICK_STATE_CM_PICK(default,never):HeroPickState;
-    static var HEROPICK_STATE_AR_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_MO_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_FH_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_INTRO(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_CAPTAINPICK(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_BAN1(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_BAN2(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_BAN3(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_BAN4(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_BAN5(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_BAN6(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT1(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT2(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT3(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT4(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT5(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT6(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT7(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT8(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT9(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_SELECT10(default,never):HeroPickState;
-    static var HEROPICK_STATE_CD_PICK(default,never):HeroPickState;
-    static var HEROPICK_STATE_BD_SELECT(default,never):HeroPickState;
-    static var HERO_PICK_STATE_ABILITY_DRAFT_SELECT(default,never):HeroPickState;
-    static var HERO_PICK_STATE_ARDM_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_ALL_DRAFT_SELECT(default,never):HeroPickState;
-    static var HERO_PICK_STATE_CUSTOMGAME_SELECT(default,never):HeroPickState;
-    static var HEROPICK_STATE_SELECT_PENALTY(default,never):HeroPickState;
-
-    static var RUNE_DOUBLEDAMAGE(default,never):Rune;
-    static var RUNE_HASTE(default,never):Rune;
-    static var RUNE_ILLUSION(default,never):Rune;
-    static var RUNE_INVISIBILITY(default,never):Rune;
-    static var RUNE_REGENERATION(default,never):Rune;
-    static var RUNE_BOUNTY(default,never):Rune;
-    static var RUNE_ARCANE(default,never):Rune;
-
-    static var RUNE_STATUS_UNKNOWN(default,never):RuneStatus;
-    static var RUNE_STATUS_AVAILABLE(default,never):RuneStatus;
-    static var RUNE_STATUS_MISSING(default,never):RuneStatus;
 }
 
 extern class Unit {
@@ -231,11 +94,11 @@ extern class Unit {
     function Action_PickUpRune():Void;
     function Action_PickUpItem():Void;
     function Action_DropItem():Void;
-    function Action_PurchaseItem(item:ItemName):Void;
+    function Action_PurchaseItem(item:ItemName):ItemPurchaseResult;
     function Action_SellItem():Void;
     function Action_Buyback():Void;
     function Action_LevelAbility():Void;
-    function GetDifficulty():Void;
+    function GetDifficulty():Difficulty;
     function GetUnitName():String;
     function GetPlayer():Void;
     function IsHero():Bool;
@@ -314,11 +177,77 @@ extern class Unit {
     function GetActualDamage():Void;
 }
 
-extern abstract GameMode(Int) {}
-extern abstract BotMode(Int) {}
-extern abstract DamageType(Int) {}
-extern abstract Difficulty(Int) {}
-extern abstract ItemPurchaseResult(Int) {}
+@:native("_G")
+@:enum extern abstract GameMode(Int) {
+    var GAMEMODE_NONE;
+    var GAMEMODE_AP;
+    var GAMEMODE_CM;
+    var GAMEMODE_RD;
+    var GAMEMODE_SD;
+    var GAMEMODE_AR;
+    var GAMEMODE_REVERSE_CM;
+    var GAMEMODE_MO;
+    var GAMEMODE_CD;
+    var GAMEMODE_ABILITY_DRAFT;
+    var GAMEMODE_ARDM;
+    var GAMEMODE_1V1MID;
+    var GAMEMODE_ALL_DRAFT;
+}
+
+@:native("_G")
+@:enum extern abstract BotMode(Int) {
+    var BOT_MODE_NONE;
+    var BOT_MODE_LANING;
+    var BOT_MODE_ATTACK;
+    var BOT_MODE_ROAM;
+    var BOT_MODE_RETREAT;
+    var BOT_MODE_SECRET_SHOP;
+    var BOT_MODE_SIDE_SHOP;
+    var BOT_MODE_PUSH_TOWER_TOP;
+    var BOT_MODE_PUSH_TOWER_MID;
+    var BOT_MODE_PUSH_TOWER_BOT;
+    var BOT_MODE_DEFEND_TOWER_TOP;
+    var BOT_MODE_DEFEND_TOWER_MID;
+    var BOT_MODE_DEFEND_TOWER_BOT;
+    var BOT_MODE_ASSEMBLE;
+    var BOT_MODE_TEAM_ROAM;
+    var BOT_MODE_FARM;
+    var BOT_MODE_DEFEND_ALLY;
+    var BOT_MODE_EVASIVE_MANEUVERS;
+    var BOT_MODE_ROSHAN;
+    var BOT_MODE_ITEM;
+    var BOT_MODE_WARD;
+}
+
+@:native("_G")
+@:enum extern abstract DamageType(Int) {
+    var DAMAGE_TYPE_PHYSICAL;
+    var DAMAGE_TYPE_MAGICAL;
+    var DAMAGE_TYPE_PURE;
+    var DAMAGE_TYPE_ALL;
+}
+
+@:native("_G")
+@:enum extern abstract Difficulty(Int) {
+    var DIFFICULTY_INVALID;
+    var DIFFICULTY_PASSIVE;
+    var DIFFICULTY_EASY;
+    var DIFFICULTY_MEDIUM;
+    var DIFFICULTY_HARD;
+    var DIFFICULTY_UNFAIR;
+}
+
+@:native("_G")
+@:enum extern abstract ItemPurchaseResult(Int) {
+    var PURCHASE_ITEM_SUCCESS;
+    var PURCHASE_ITEM_OUT_OF_STOCK;
+    var PURCHASE_ITEM_DISALLOWED_ITEM;
+    var PURCHASE_ITEM_INSUFFICIENT_GOLD;
+    var PURCHASE_ITEM_NOT_AT_HOME_SHOP;
+    var PURCHASE_ITEM_NOT_AT_SIDE_SHOP;
+    var PURCHASE_ITEM_NOT_AT_SECRET_SHOP;
+    var PURCHASE_ITEM_INVALID_ITEM_NAME;
+}
 
 @:native("_G")
 @:enum extern abstract Team(Int) {
@@ -336,10 +265,97 @@ extern abstract ItemPurchaseResult(Int) {}
     var LANE_BOT;
 }
 
-extern abstract GameState(Int) {}
-extern abstract HeroPickState(Int) {}
-extern abstract Rune(Int) {}
-extern abstract RuneStatus(Int) {}
+@:native("_G")
+@:enum extern abstract GameState(Int) {
+    var GAME_STATE_INIT;
+    var GAME_STATE_WAIT_FOR_PLAYERS_TO_LOAD;
+    var GAME_STATE_HERO_SELECTION;
+    var GAME_STATE_STRATEGY_TIME;
+    var GAME_STATE_PRE_GAME;
+    var GAME_STATE_GAME_IN_PROGRESS;
+    var GAME_STATE_POST_GAME;
+    var GAME_STATE_DISCONNECT;
+    var GAME_STATE_TEAM_SHOWCASE;
+    var GAME_STATE_CUSTOM_GAME_SETUP;
+    var GAME_STATE_WAIT_FOR_MAP_TO_LOAD;
+    var GAME_STATE_LAST;
+}
+
+@:native("_G")
+@:enum extern abstract HeroPickState(Int) {
+    var HEROPICK_STATE_NONE;
+    var HEROPICK_STATE_AP_SELECT;
+    var HEROPICK_STATE_SD_SELECT;
+    var HEROPICK_STATE_CM_INTRO;
+    var HEROPICK_STATE_CM_CAPTAINPICK;
+    var HEROPICK_STATE_CM_BAN1;
+    var HEROPICK_STATE_CM_BAN2;
+    var HEROPICK_STATE_CM_BAN3;
+    var HEROPICK_STATE_CM_BAN4;
+    var HEROPICK_STATE_CM_BAN5;
+    var HEROPICK_STATE_CM_BAN6;
+    var HEROPICK_STATE_CM_BAN7;
+    var HEROPICK_STATE_CM_BAN8;
+    var HEROPICK_STATE_CM_BAN9;
+    var HEROPICK_STATE_CM_BAN10;
+    var HEROPICK_STATE_CM_SELECT1;
+    var HEROPICK_STATE_CM_SELECT2;
+    var HEROPICK_STATE_CM_SELECT3;
+    var HEROPICK_STATE_CM_SELECT4;
+    var HEROPICK_STATE_CM_SELECT5;
+    var HEROPICK_STATE_CM_SELECT6;
+    var HEROPICK_STATE_CM_SELECT7;
+    var HEROPICK_STATE_CM_SELECT8;
+    var HEROPICK_STATE_CM_SELECT9;
+    var HEROPICK_STATE_CM_SELECT10;
+    var HEROPICK_STATE_CM_PICK;
+    var HEROPICK_STATE_AR_SELECT;
+    var HEROPICK_STATE_MO_SELECT;
+    var HEROPICK_STATE_FH_SELECT;
+    var HEROPICK_STATE_CD_INTRO;
+    var HEROPICK_STATE_CD_CAPTAINPICK;
+    var HEROPICK_STATE_CD_BAN1;
+    var HEROPICK_STATE_CD_BAN2;
+    var HEROPICK_STATE_CD_BAN3;
+    var HEROPICK_STATE_CD_BAN4;
+    var HEROPICK_STATE_CD_BAN5;
+    var HEROPICK_STATE_CD_BAN6;
+    var HEROPICK_STATE_CD_SELECT1;
+    var HEROPICK_STATE_CD_SELECT2;
+    var HEROPICK_STATE_CD_SELECT3;
+    var HEROPICK_STATE_CD_SELECT4;
+    var HEROPICK_STATE_CD_SELECT5;
+    var HEROPICK_STATE_CD_SELECT6;
+    var HEROPICK_STATE_CD_SELECT7;
+    var HEROPICK_STATE_CD_SELECT8;
+    var HEROPICK_STATE_CD_SELECT9;
+    var HEROPICK_STATE_CD_SELECT10;
+    var HEROPICK_STATE_CD_PICK;
+    var HEROPICK_STATE_BD_SELECT;
+    var HERO_PICK_STATE_ABILITY_DRAFT_SELECT;
+    var HERO_PICK_STATE_ARDM_SELECT;
+    var HEROPICK_STATE_ALL_DRAFT_SELECT;
+    var HERO_PICK_STATE_CUSTOMGAME_SELECT;
+    var HEROPICK_STATE_SELECT_PENALTY;
+}
+
+@:native("_G")
+@:enum extern abstract Rune(Int) {
+    var RUNE_DOUBLEDAMAGE;
+    var RUNE_HASTE;
+    var RUNE_ILLUSION;
+    var RUNE_INVISIBILITY;
+    var RUNE_REGENERATION;
+    var RUNE_BOUNTY;
+    var RUNE_ARCANE;
+}
+
+@:native("_G")
+@:enum extern abstract RuneStatus(Int) {
+    var RUNE_STATUS_UNKNOWN;
+    var RUNE_STATUS_AVAILABLE;
+    var RUNE_STATUS_MISSING;
+}
 
 extern class Ability {
     function IsFullyCastable():Bool;
