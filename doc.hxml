@@ -1,0 +1,9 @@
+-cp src
+--macro include("", true, null, ["src"])
+-D doc-gen
+-lua out.lua
+--no-output
+-xml bin/doc/lua.xml
+
+--next
+-cmd haxelib run dox -i bin/doc -o bin/doc -in "^dotabot*" --title "Dota bot API documentation" -D source-path https://github.com/nadako/hxdotabot/blob/master/src/ -D website "https://github.com/nadako/hxdotabot"

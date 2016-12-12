@@ -1,0 +1,17 @@
+sudo: required
+dist: trusty
+
+language: haxe
+
+os:
+  - linux
+
+haxe:
+  - development
+
+install:
+  - haxelib install dox
+
+script:
+  - haxe doc.hxml
+  - bash doc-deploy.sh
