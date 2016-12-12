@@ -14,8 +14,8 @@ extern class Global {
     static function DotaTime():Float;
     static function GameTime():Float;
     static function RealTime():Float;
-    static function GetUnitToUnitDistance():Float;
-    static function GetUnitToLocationDistance():Void;
+    static function GetUnitToUnitDistance(a:Unit, b:Unit):Float;
+    static function GetUnitToLocationDistance(unit:Unit, location:Location):Void;
     static function GetWorldBounds():Void;
     static function IsLocationPassable():Bool;
     static function GetHeightLevel():Int;
